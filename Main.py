@@ -39,8 +39,33 @@ plt.ylabel('Рубли')
 plt.legend(loc="right")
 plt.show()
 
-fig = plt.figure()
-ax = fig.add_subplot(projection='3d')
-ax.plot(Iteration_one, Costs_one, Economic_damage_one, label='parametric curve')
-ax.plot(Iteration_multi, Costs_multi, Economic_damage_multi, label='parametric curve')
+
+# Преобразуем в numpy-массивы для удобства
+x = np.array(Iteration_one)
+y = np.array(Costs_one)
+z = np.array(Economic_damage_one)
+x1 = np.array(Iteration_multi)
+y1 = np.array(Costs_multi)
+z1 = np.array(Economic_damage_multi)
+
+# Создаём 3D-график
+fig = plt.figure(figsize=(9, 6))
+ax = fig.add_subplot(111, projection='3d')
+
+# Точечный график с цветовой картой (цвет зависит от Z)
+scatter = ax.scatter(x, y, z, c=z, cmap='Blues', s=50)
+scatter1 = ax.scatter(x1, y1, z1, c=z, cmap='Oranges', s=50)
+# ax.plot_trisurf(x, y, z, cmap='viridis', alpha=0.7)
+
+# Подписи осей
+ax.set_xlabel('Итерация')
+ax.set_ylabel('Суммарные затраты на стр-во. и рек-ю.')
+ax.set_zlabel('Экономический ущерб')
+
+# Цветовая шкала
+plt.colorbar(scatter, label='Затраты однокритериальная')
+plt.colorbar(scatter1, label='Затраты многокритериальная')
+
+
+plt.title("3D Визуализация данных")
 plt.show()
