@@ -16,28 +16,28 @@ Iteration_test = []
 Economic_damage_test = []
 Costs_test = []
 
-with open('Convolution.csv', 'r') as csvfile:
+with open('TwentyFiveYear\\Convolution25.csv', 'r') as csvfile:
     csvreader = csv.reader(csvfile)
     for row in csvreader:
         Iteration_convolution.append(float(row[0]))
         Economic_damage_convolution.append(float(row[1]))
         Costs_convolution.append((float(row[2]) + float(row[3])))
 
-with open('MainCriteria.csv', 'r') as csvfile:
+with open('TwentyFiveYear\\MainCriteria25.csv', 'r') as csvfile:
     csvreader = csv.reader(csvfile)
     for row in csvreader:
         Iteration_main.append(float(row[0]))
         Economic_damage_main.append(float(row[1]))
         Costs_main.append((float(row[2]) + float(row[3])))
 
-with open('Target.csv', 'r') as csvfile:
+with open('TwentyFiveYear\\Target25.csv', 'r') as csvfile:
     csvreader = csv.reader(csvfile)
     for row in csvreader:
         Iteration_target.append(float(row[0]))
         Economic_damage_target.append(float(row[1]))
         Costs_target.append((float(row[2]) + float(row[3])))
 
-with open('GenTest.csv', 'r') as csvfile:
+with open('TwentyFiveYear\\GenTest25.csv', 'r') as csvfile:
     csvreader = csv.reader(csvfile)
     for row in csvreader:
         Iteration_test.append(float(row[0]))
@@ -47,7 +47,7 @@ with open('GenTest.csv', 'r') as csvfile:
 plt.plot(Iteration_convolution, Economic_damage_convolution, label='Метод свертки')
 plt.plot(Iteration_main, Economic_damage_main, label='Метод главного критерия')
 plt.plot(Iteration_target, Economic_damage_target, label='Метод целевого программирования')
-plt.title('Изменение экономического ущерба от ненадежности')
+plt.title('Изменение экономического ущерба от ненадежности (1 атака в 25 лет)')
 plt.xlabel('Итерация')
 plt.ylabel('Рубли')
 plt.legend(loc="right")
@@ -56,7 +56,7 @@ plt.show()
 plt.plot(Iteration_convolution, Costs_convolution, label='Метод свертки')
 plt.plot(Iteration_main, Costs_main, label='Метод главного критерия')
 plt.plot(Iteration_target, Costs_target, label='Метод целевого программирования')
-plt.title('Изменение затрат')
+plt.title('Изменение затрат (1 атака в 25 лет)')
 plt.xlabel('Итерация')
 plt.ylabel('Рубли')
 plt.legend(loc="right")
