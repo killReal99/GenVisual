@@ -3,12 +3,20 @@ import numpy as np
 import csv
 
 Iteration_convolution = []
+Iteration_convolution_direct = []
+Iteration_convolution_reverse = []
 Iteration_main = []
 Iteration_target = []
+
 Economic_damage_convolution = []
+Economic_damage_convolution_direct = []
+Economic_damage_convolution_reverse = []
 Economic_damage_main = []
 Economic_damage_target = []
+
 Costs_convolution = []
+Costs_convolution_direct = []
+Costs_convolution_reverse = []
 Costs_main = []
 Costs_target = []
 
@@ -22,6 +30,20 @@ with open('TwentyFiveYear\\Convolution25.csv', 'r') as csvfile:
         Iteration_convolution.append(float(row[0]))
         Economic_damage_convolution.append(float(row[1]))
         Costs_convolution.append((float(row[2]) + float(row[3])))
+
+with open('OneYear\\Convolution25Direct.csv', 'r') as csvfile:
+    csvreader = csv.reader(csvfile)
+    for row in csvreader:
+        Iteration_convolution_direct.append(float(row[0]))
+        Economic_damage_convolution_direct.append(float(row[1]))
+        Costs_convolution_direct.append((float(row[2]) + float(row[3])))
+
+with open('OneYear\\Convolution25Reverse.csv', 'r') as csvfile:
+    csvreader = csv.reader(csvfile)
+    for row in csvreader:
+        Iteration_convolution_reverse.append(float(row[0]))
+        Economic_damage_convolution_reverse.append(float(row[1]))
+        Costs_convolution_reverse.append((float(row[2]) + float(row[3])))
 
 with open('TwentyFiveYear\\MainCriteria25.csv', 'r') as csvfile:
     csvreader = csv.reader(csvfile)

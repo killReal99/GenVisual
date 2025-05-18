@@ -3,12 +3,20 @@ import numpy as np
 import csv
 
 Iteration_convolution = []
+Iteration_convolution_direct = []
+Iteration_convolution_reverse = []
 Iteration_main = []
 Iteration_target = []
+
 Economic_damage_convolution = []
+Economic_damage_convolution_direct = []
+Economic_damage_convolution_reverse = []
 Economic_damage_main = []
 Economic_damage_target = []
+
 Costs_convolution = []
+Costs_convolution_direct = []
+Costs_convolution_reverse = []
 Costs_main = []
 Costs_target = []
 
@@ -22,6 +30,20 @@ with open('OneYear\\Convolution1.csv', 'r') as csvfile:
         Iteration_convolution.append(float(row[0]))
         Economic_damage_convolution.append(float(row[1]))
         Costs_convolution.append((float(row[2]) + float(row[3])))
+
+with open('OneYear\\Convolution1Direct.csv', 'r') as csvfile:
+    csvreader = csv.reader(csvfile)
+    for row in csvreader:
+        Iteration_convolution_direct.append(float(row[0]))
+        Economic_damage_convolution_direct.append(float(row[1]))
+        Costs_convolution_direct.append((float(row[2]) + float(row[3])))
+
+with open('OneYear\\Convolution1Reverse.csv', 'r') as csvfile:
+    csvreader = csv.reader(csvfile)
+    for row in csvreader:
+        Iteration_convolution_reverse.append(float(row[0]))
+        Economic_damage_convolution_reverse.append(float(row[1]))
+        Costs_convolution_reverse.append((float(row[2]) + float(row[3])))
 
 with open('OneYear\\MainCriteria1.csv', 'r') as csvfile:
     csvreader = csv.reader(csvfile)
@@ -43,6 +65,23 @@ with open('OneYear\\GenTest1.csv', 'r') as csvfile:
         Iteration_test.append(float(row[0]))
         Economic_damage_test.append(float(row[1]))
         Costs_test.append((float(row[2]) + float(row[3])))
+plt.plot(Iteration_convolution, Economic_damage_convolution, label='Метод свертки (равные веса)')
+plt.plot(Iteration_convolution_direct, Economic_damage_convolution_direct, label='Метод свертки (прямо пропорциональные веса)')
+plt.plot(Iteration_convolution_reverse, Economic_damage_convolution_reverse, label='Метод свертки (обратно пропорциональные веса)')
+plt.title('Изменение экономического ущерба от ненадежности (1 атака в год)')
+plt.xlabel('Итерация')
+plt.ylabel('Рубли')
+plt.legend(loc="right")
+plt.show()
+
+plt.plot(Iteration_convolution, Costs_convolution, label='Метод свертки (равные веса)')
+plt.plot(Iteration_convolution_direct, Costs_convolution_direct, label='Метод свертки (прямо пропорциональные веса)')
+plt.plot(Iteration_convolution_reverse, Costs_convolution_reverse, label='Метод свертки (обратно пропорциональные  веса)')
+plt.title('Изменение затрат (1 атака в год)')
+plt.xlabel('Итерация')
+plt.ylabel('Рубли')
+plt.legend(loc="right")
+plt.show()
 
 plt.plot(Iteration_convolution, Economic_damage_convolution, label='Метод свертки')
 plt.plot(Iteration_main, Economic_damage_main, label='Метод главного критерия')
